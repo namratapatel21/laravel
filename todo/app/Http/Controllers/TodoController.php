@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
+use App\todo;
 
 class TodoController extends Controller
 {
@@ -13,7 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $data = DB::Select('select * from todos');
+        return view('welcome',compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +36,11 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $td = new todo();
+        $td->body=$request->input('todobody');
+        $td->save();
+        session()->flash('success','Todo inserted successfully');
+        return redirect('/');
     }
 
     /**
@@ -56,7 +62,8 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+       $datafor= DB::select('select * from todos where id_todo =?',[$id]);
+        return view('edit',compact('datafor'));
     }
 
     /**
@@ -68,7 +75,9 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $up = $request->input('uptodo');
+        DB::update('update todos set body=? where id_todo=?',[$up,$id]);
+        return redirect('/');
     }
 
     /**
@@ -79,6 +88,7 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::delete('delete from todos where id_todo=?',[$id]);
+        return redirect('/');
     }
 }

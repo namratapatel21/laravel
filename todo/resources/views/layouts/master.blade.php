@@ -11,6 +11,13 @@
     <title>ToDo App</title>
 </head>
 <body>
+    <style>
+        body {
+          background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPhRi_q4xfXtcoPYaewjkkiKfU4Rqp1KXIFw&usqp=CAU');
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        </style>
     @include('navs.navbar')
     @yield('content')
 </body>
