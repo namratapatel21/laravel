@@ -9,7 +9,7 @@ class YoutubeApiController extends Controller
 {
    public function index(){
     $client = new Client();
-    $res = $client->request('GET', 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyA32NJw6dEnGzrVaz9917CeiY3u7ljKlc8&q=laravel tutorial');
+    $res = $client->request('GET', 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBnR6aoR6SC5jZGgHYaUOHzbrPCJ3LQP8w&q=laravel tutorial');
     $res->getStatusCode();
     //echo $res;
  

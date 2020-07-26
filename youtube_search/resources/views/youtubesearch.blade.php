@@ -1,6 +1,6 @@
 
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -61,8 +61,7 @@
            margin-bottom: 4%
         }
 
-
-        </style>
+    </style>
   
 <div class="row ">
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top ">
@@ -71,7 +70,7 @@
         <form class="form-inline my-2 my-lg-0 formclass">
             <input class="form-control mr-sm-2" type="text" id="search_txt" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-danger my-2 my-sm-0"  id="youtube_search"type="button"><i class="fas fa-search"></i></button>
-          </form>
+        </form>
         
     </nav>
 </div>
@@ -87,46 +86,48 @@
     </main>
     
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-{{-- <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script></body> --}}
 <script type="text/javascript">
 
-//document.addEventListener('DOMContentLoaded',function(){
-var key_id = "AIzaSyA32NJw6dEnGzrVaz9917CeiY3u7ljKlc8";
+var key_id = "AIzaSyBnR6aoR6SC5jZGgHYaUOHzbrPCJ3LQP8w"; // youtube api key
 var part = "snippet";
 
 var maxResults = 6;
 
-   $('#youtube_search').click(function(){
-     var q = document.getElementById('search_txt').value;
-     var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q+'&maxResults='+maxResults;
-     console.log(ajaxurl);
+$('#youtube_search').click(function() {
+    var q = document.getElementById('search_txt').value;
+    var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part=' + part + '&key=' + key_id + '&q=' + q + '&maxResults=' + maxResults;
+    console.log(ajaxurl);
 
-      $.ajax({
+if(q != ""){
+    $.ajax({
         type: "GET",
         url: ajaxurl,
-        dataType:"jsonp",
-        success: function(response){
-          //console.log(response);
-          if(response.items){
-            $("#search_result > .row").empty();
-            $.each(response.items, function(i,items){
-              var video_id=items.id.videoId;
-              var video_title=items.snippet.title;
-              // IFRAME Embed for YouTube
-              var video_frame="<div class='col-md-6 col-xs-12' style='margin-bottom: 25px;'><iframe width='100%' height='300' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe><span style='font-size: larger; font-weight: 900;'>"+video_title+"</span>";
+        dataType: "jsonp",
+        success: function(response) {
+            //console.log(response);
+            if (response.items) {
+                $("#search_result > .row").empty();
+                $.each(response.items, function(i, items) {
+                    var video_id = items.id.videoId;
+                    var video_title = items.snippet.title;
+                    // IFRAME Embed for YouTube
+                    var video_frame = "<div class='col-md-6 col-xs-12' style='margin-bottom: 25px;'><iframe width='100%' height='300' src='http://www.youtube.com/embed/" + video_id + "' frameborder='0' type='text/html'></iframe><span style='font-size: larger; font-weight: 900;'>" + video_title + "</span>";
 
-              $("#search_result > .row").append(video_frame); // Result
+                    $("#search_result > .row").append(video_frame); // appending Search results
 
-             });
-          }
-          else{
-            $("#search_result > .row").html("<div id='no'>No Video</div>");
-          }
+                });
+            } 
         }
     });
+}else{
+   
+    $("#search_result > .row").empty();
+    var message = "Sorry, no result found";
+    var message_2 = "What you searched was unfortunately not found or doesn't exist.";
+    var message_discription="<div style='font-size:40px;font-weight:800;font-family:inherit;color:black;margin-top:200px;margin-left:30%'>"+message+"</div><br/><center><div style='font-size:40px;font-weight:700;font-family:inherit;color:gray;''>"+message_2+"</div></center>";
+    $("#search_result > .row").append(message_discription);
+}
 
-
-  //});
 });
 </script>
 
