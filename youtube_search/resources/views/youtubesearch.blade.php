@@ -32,7 +32,7 @@
     <style>
         body {
           /* background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&w=1000&q=80'); */
-          background-image: url('https://ak.picdn.net/shutterstock/videos/488137/thumb/1.jpg');
+          background-image: url('https://image.freepik.com/free-photo/abstract-white-color-canvas-wallpaper-textures-surface_74190-6376.jpg');
           background-repeat: no-repeat;
           background-size: cover;
         }
@@ -53,7 +53,12 @@
 
         html{
             font-size: 16px;
-            font-family: Roboto, Arial, sans-serif;
+            font-family:sans-serif;
+        }
+
+        #search_result{
+           margin-top: 10%;
+           margin-bottom: 4%
         }
 
 
@@ -89,11 +94,11 @@
 var key_id = "AIzaSyA32NJw6dEnGzrVaz9917CeiY3u7ljKlc8";
 var part = "snippet";
 
-var maxResults = 20;
+var maxResults = 6;
 
    $('#youtube_search').click(function(){
      var q = document.getElementById('search_txt').value;
-     var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q;
+     var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q+'&maxResults='+maxResults;
      console.log(ajaxurl);
 
       $.ajax({
@@ -108,9 +113,7 @@ var maxResults = 20;
               var video_id=items.id.videoId;
               var video_title=items.snippet.title;
               // IFRAME Embed for YouTube
-              var video_frame="<div class='col-md-6 col-xs-12'><iframe width='100%' height='385' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe>";
-
-              //var final="<div id='title'>"+video_title+"</div><div>"+video_frame+"</div><div id='count'>"+video_viewCount+" Views</div>";
+              var video_frame="<div class='col-md-6 col-xs-12' style='margin-bottom: 25px;'><iframe width='100%' height='300' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe><span style='font-size: larger; font-weight: 900;'>"+video_title+"</span>";
 
               $("#search_result > .row").append(video_frame); // Result
 
