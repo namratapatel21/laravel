@@ -16,8 +16,10 @@ class YoutubeApiController extends Controller
     $res->getHeader('content-type')[0];
     
     $result = $res->getBody();
-   echo $result;
+   //echo $result;
+   //$jsondata = json_decode($result,true);
+     //dd($jsondata);
     
-    //return view('Youtube')->with('response', $result);
+    return view('youtubesearch')->with('response', $result);
    }
 }
