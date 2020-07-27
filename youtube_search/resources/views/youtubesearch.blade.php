@@ -88,7 +88,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 
-var key_id = "AIzaSyBnR6aoR6SC5jZGgHYaUOHzbrPCJ3LQP8w"; // youtube api key
+var key_id = "AIzaSyDbax81dP4GYXo9CRzE3_PWtXEHrfG5HXE"; // youtube api key
 var part = "snippet";
 
 var maxResults = 6;
@@ -124,7 +124,7 @@ if(q != ""){
     $("#search_result > .row").empty();
     var message = "Sorry, no result found";
     var message_2 = "What you searched was unfortunately not found or doesn't exist.";
-    var message_discription="<div style='font-size:40px;font-weight:800;font-family:inherit;color:black;margin-top:200px;margin-left:30%'>"+message+"</div><br/><center><div style='font-size:40px;font-weight:700;font-family:inherit;color:gray;''>"+message_2+"</div></center>";
+    var message_discription="<img src='https://img.icons8.com/bubbles/2x/zoom-in.png' style='margin-left: 30%;width: 33%;'><div style='font-size:40px;font-weight:800;font-family:inherit;color:black;margin-left:30%'>"+message+"</div><br/><center><div style='font-size:40px;font-weight:700;font-family:inherit;color:gray;''>"+message_2+"</div></center>";
     $("#search_result > .row").append(message_discription);
 }
 
